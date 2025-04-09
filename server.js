@@ -16,7 +16,7 @@ const{CONNECTION_URL} = process.env;
 //connect to DB
 mongoose.connect(CONNECTION_URL,{useNewUrlParser: true, useUnifiedTopology: true})
 .then(() =>{
-    console.log('connected to DB');
+    console.log('connected to DB \n');
 }).catch((err) =>{
     console.error("connection to DB failed!", err);
 });
@@ -24,7 +24,7 @@ mongoose.connect(CONNECTION_URL,{useNewUrlParser: true, useUnifiedTopology: true
 //----API stuff---
 
 //get all recipes
-server.get('/api/dishes', async function (res){
+server.get('/api/dishes', async function (req, res){
 try{
     const allRecipes = await Recipe.find();
     res.status(200).json(allRecipes);
@@ -106,5 +106,5 @@ catch(err){
 
 
 server.listen(5000, () =>{
-    console.log('server running on port 5000');
+    console.log('------------------  \nserver running on port 5000  \n');
   });
