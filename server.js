@@ -88,11 +88,17 @@ server.delete('/api/dishes/:id', async function (req, res){
 
 //post new recipe
 server.post('/api/dishes', async function (req, res){
+const { name, ingredients, preparation, time, landOfOrigin, glutenFree, vegan, spiceLevel } = req.body;
+
+if (!name || !ingredients || !preparation || !time || !landOfOrigin || glutenFree === undefined || vegan === undefined || spiceLevel === undefined) {
+    return res.status(400).json({ message: 'some required fields are empty' });
+}
+    
 try{
     const existingRecipe = await Recipe.findOne({name: req.body.name});
     
     if(!existingRecipe){
-        const newRecipe = new recipe(req.body);
+        const newRecipe = new Recipe(req.body);
         await newRecipe.save();
         res.status(201).json(newRecipe);
     }else{
