@@ -63,6 +63,7 @@ server.put('/api/dishes/:id', async function (req, res){
          if (!  updatedRecipe) {
             return res.status(404).json({ message: 'recipe doesnt exist' });
         }
+        res.status(200).json({message: 'Recipe updated' + updatedRecipe});
     } 
     catch (err){
         res.status(500).json({ message: "error in updating dish" + err.message });
