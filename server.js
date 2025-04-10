@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const Recipe = require('./database/database.js');
-const open = require('open');
+const open = require('open').default;
 
 //innitialize the app
 const server = express();
