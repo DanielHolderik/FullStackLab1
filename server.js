@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const Recipe = require('./database/database.js');
+const open = require('open');
 
 //innitialize the app
 const server = express();
@@ -114,4 +115,6 @@ catch(err){
 
 server.listen(5000, () =>{
     console.log('------------------  \nserver running on port 5000  \n');
+    open('http://localhost:5000');
+    //console.log();
   });
