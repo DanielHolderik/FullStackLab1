@@ -4,8 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipes</title>
+    <link rel="stylesheet" href="/html/style.css">
 </head>
 <body>
-    <script></script>
+<h1>Here you can lookup, update, add or delete recipes</h1>
+<h2>Here are some of our recipes.</h2>
+
+<!-- table w all recipes first -->
+<table>
+    <thead class="thead">
+        <tr>
+            <th>Name</th>
+            <th>Ingredients</th>
+            <th>Preparation</th>
+            <th>Duration</th>
+            <th>Origin</th>
+            <th>Spicyness</th>
+            <th>Gluten Free</th>
+            <th>Vegan</th>
+            
+        </tr>
+    </thead>
+    <tbody class="tbody">
+
+    </tbody>
+</table>
+
+<!-- form to add delete etc -->
+ <form class="recipeForm">
+    <h3>Fill out the form to add, update or delete a recipe</h3>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="ingredients">Ingredients:</label>
+    <input type="text" id="ingredients" name="ingredients" required><br><br>
+
+    <label for="preparation">Preparation:</label>
+    <input type="text" id="preparation" name="preparation" required><br><br>
+
+    <label for="duration">Duration:</label>
+    <input type="text" id="duration" name="duration" required><br><br>
+
+    <label for="origin">Origin:</label>
+    <input type="text" id="origin" name="origin"><br><br>
+
+    <label for="spicyness">Spicyness:</label>
+    <input type="number" id="spicyness" name="spicyness"><br><br>
+
+    <label for="glutenFree">Gluten Free:</label>
+    <input type="checkbox" id="glutenFree" name="glutenFree"><br><br>
+
+    <label for="vegan">Vegan:</label>
+    <input type="checkbox" id="vegan" name="vegan"><br><br>
+
+    <button type="submit">Submit</button>
+
+ </form>
+
+
+    <script src="/html/script.js"></script>
 </body>
 </html>
