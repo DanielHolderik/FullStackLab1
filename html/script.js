@@ -49,3 +49,44 @@ async function fetchAlRecipes(){
     });
 
 }
+
+async function update(recipeId){
+    //updated recupe object
+    const updatedRecipe = {
+        name: document.getElementById(`name-${recipeId}`).value,
+        ingredients: document.getElementById(`ingredients-${recipeId}`).value.split(",").map(ingredient => ingredient.trim()),
+        landOfOrigin: document.getElementById(`origin-${recipeId}`).value,
+        time: Number(document.getElementById(`time-${recipeId}`).value),
+        spiceLevel: Number(document.getElementById(`spice-${recipeId}`).value),
+        glutenFree: document.getElementById(`gluten-${recipeId}`).checked,
+        vegan: document.getElementById(`vegan-${recipeId}`).checked
+    };
+    const name = document.getElementById(`name-${recipeId}`).value;
+    const ingredients = document.getElementById(`ingredients-${recipeId}`).value.split(",").map(ingredient => ingredient.trim());
+    const landOfOrigin = document.getElementById(`origin-${recipeId}`).value;
+    const time = Number(document.getElementById(`time-${recipeId}`).value);
+    const spiceLevel = Number(document.getElementById(`spice-${recipeId}`).value);
+    const glutenFree = document.getElementById(`gluten-${recipeId}`).checked;
+    const vegan = document.getElementById(`vegan-${recipeId}`).checked;
+    
+    //console.log(updatedRecipe);
+
+    //send PUT request
+    await fetch(`/api/dishes/${recipeId}`, {
+        method: 'PUT',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedRecipe)
+    });
+
+    //refresh the table w updated recipe 
+    fetchAlRecipes();
+};
+
+async function deleteRecipe(recipeId){
+    await fetch(`/api/dishes/${recipeId}`, {
+        method: 'DELETE'
+    });
+    fetchAlRecipes();
+}
