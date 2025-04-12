@@ -32,6 +32,20 @@ async function fetchAlRecipes(){
     const tbody = document.getElementsByClassName("tbody");
     tbody.innerHTML = ""; //clear
 
-    
+    recipes.forEach(recipe => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td><input value="${recipe.name}"  id="name-${recipe._id}"></td>
+            <td><input value="${recipe.ingredients}"  id="ingedients-${recipe._id}"></td>
+            <td><input value="${recipe.landOfOrigin}" id="origin-${recipe._id}"></td>
+            <td><input type="number" value="${recipe.time}" id="time-${recipe._id}"></td>
+            <td><input type="number" value="${recipe.spiceLevel}" id="spice-${recipe._id}"></td>
+            <td><input type="checkbox" id="gluten-${recipe._id}" ${recipe.glutenFree ? "checked" : ""} /></td>
+            <td><input type="checkbox" id="vegan-${recipe._id}" ${recipe.vegan ? "checked" : ""} /></td>
+            <td><button onclick="updateRecipe('${recipe._id}')">Save</button>
+            <button onclick="deleteRecipe('${recipe._id}')">Delete</button></td>
+            
+            `;
+    });
 
 }
