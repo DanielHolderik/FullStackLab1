@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", function(){
+    console.log("---DOM LOADED---") //debug
 fetchAlRecipes();
+// console.log("fetched recipes" + recipes) //debug
 
-    document.getElementsByClassName("recipeForm").addEventListener("submit", async (event) =>{
+    document.querySelector(".recipeForm").addEventListener("submit", async (event) => {
         event.preventDefault(); //no refresh
     
         const formInput = new FormData(event.target);
@@ -29,7 +31,9 @@ fetchAlRecipes();
 async function fetchAlRecipes(){
     const fetchResponse = await fetch('/api/dishes');
     const recipes = await fetchResponse.json();
-    const tbody = document.getElementsByClassName("tbody");
+    console.log("fetched recipes", recipes); //debug
+    const tbody = document.querySelector(".tbody");
+    console.log("tbody is:", tbody); //debug
     tbody.innerHTML = ""; //clear
 
     recipes.forEach(recipe => {
@@ -46,6 +50,7 @@ async function fetchAlRecipes(){
             <button onclick="deleteRecipe('${recipe._id}')">Delete</button></td>
 
             `;
+            tbody.appendChild(tr);
     });
 
 }

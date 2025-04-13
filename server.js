@@ -11,9 +11,10 @@ const path = require('path');
 //innitialize the app
 const server = express();
 server.use(bodyParser.json());
-server.use(express.static(path.join(__dirname, 'public')));
+server.use(express.static('html'));
+server.use(express.static(path.join(__dirname, 'html')));
 server.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'html', 'index.html'));
 });
 dotenv.config();
 
@@ -23,11 +24,12 @@ const{CONNECTION_URL} = process.env;
 mongoose.connect(CONNECTION_URL,{useNewUrlParser: true, useUnifiedTopology: true})
 .then(() =>{
     console.log('connected to DB \n');
+    console.log('conncted to: ', CONNECTION_URL);
 }).catch((err) =>{
     console.error("connection to DB failed!", err);
 });
 
-//----API stuff---
+//------------------------API stuff--------------------------
 
 //get all recipes
 server.get('/api/dishes', async function (req, res){
