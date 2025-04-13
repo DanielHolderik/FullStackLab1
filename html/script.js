@@ -66,15 +66,16 @@ async function update(recipeId){
         glutenFree: document.getElementById(`gluten-${recipeId}`).checked,
         vegan: document.getElementById(`vegan-${recipeId}`).checked
     };
-    const name = document.getElementById(`name-${recipeId}`).value;
-    const ingredients = document.getElementById(`ingredients-${recipeId}`).value.split(",").map(ingredient => ingredient.trim());
-    const landOfOrigin = document.getElementById(`origin-${recipeId}`).value;
-    const time = Number(document.getElementById(`time-${recipeId}`).value);
-    const spiceLevel = Number(document.getElementById(`spice-${recipeId}`).value);
-    const glutenFree = document.getElementById(`gluten-${recipeId}`).checked;
-    const vegan = document.getElementById(`vegan-${recipeId}`).checked;
+    // const name = document.getElementById(`name-${recipeId}`).value;
+    // const ingredients = document.getElementById(`ingredients-${recipeId}`).value.split(",").map(ingredient => ingredient.trim());
+    // const landOfOrigin = document.getElementById(`origin-${recipeId}`).value;
+    // const time = Number(document.getElementById(`time-${recipeId}`).value);
+    // const spiceLevel = Number(document.getElementById(`spice-${recipeId}`).value);
+    // const glutenFree = document.getElementById(`gluten-${recipeId}`).checked;
+    // const vegan = document.getElementById(`vegan-${recipeId}`).checked;
+    //old code keep for now
     
-    //console.log(updatedRecipe);
+    console.log(updatedRecipe); //debug
 
     //send PUT request
     await fetch(`/api/dishes/${recipeId}`, {

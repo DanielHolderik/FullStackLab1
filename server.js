@@ -44,6 +44,7 @@ catch(err){
 
 //get recipe by name
 server.get('/api/dishes/:name', async function (req, res){
+    console.log("GET /api/dishes reached!"); //debug
     try{
         const recipeName = req.params.name;
         const recipeFound = await Recipe.findOne({name: recipeName});
@@ -60,6 +61,9 @@ server.get('/api/dishes/:name', async function (req, res){
 
 //uopdate dish
 server.put('/api/dishes/:id', async function (req, res){
+    console.log("PUT /api/dishes/:id called"); 
+    console.log("id:", req.params.id);    //debug
+    console.log("request body:", req.body);
     const recipeId = req.params.id;
 
     try {
@@ -97,11 +101,13 @@ server.delete('/api/dishes/:id', async function (req, res){
 
 //post new recipe
 server.post('/api/dishes', async function (req, res){
-const { name, ingredients, preparation, time, landOfOrigin, glutenFree, vegan, spiceLevel } = req.body;
+    console.log("POST /api/dishes called"); //debug
+    console.log("request body:", req.body); //debug
+const { name, ingredients, time, landOfOrigin, glutenFree, vegan, spiceLevel } = req.body;
 
-if (!name || !ingredients || !preparation || !time || !landOfOrigin || glutenFree === undefined || vegan === undefined || spiceLevel === undefined) {
+if (!name || !ingredients || !time || !landOfOrigin || glutenFree === undefined || vegan === undefined || spiceLevel === undefined) {
     return res.status(400).json({ message: 'some required fields are empty' });
-}
+}  
     
 try{
     const existingRecipe = await Recipe.findOne({name: req.body.name});
