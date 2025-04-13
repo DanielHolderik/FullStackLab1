@@ -6,10 +6,15 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const Recipe = require('./database/database.js');
 const open = require('open').default;
+const path = require('path');
 
 //innitialize the app
 const server = express();
 server.use(bodyParser.json());
+server.use(express.static(path.join(__dirname, 'public')));
+server.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 dotenv.config();
 
 const{CONNECTION_URL} = process.env;

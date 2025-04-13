@@ -44,7 +44,7 @@ async function fetchAlRecipes(){
             <td><input type="checkbox" id="vegan-${recipe._id}" ${recipe.vegan ? "checked" : ""} /></td>
             <td><button onclick="updateRecipe('${recipe._id}')">Save</button>
             <button onclick="deleteRecipe('${recipe._id}')">Delete</button></td>
-            
+
             `;
     });
 
