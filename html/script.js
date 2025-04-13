@@ -40,13 +40,13 @@ async function fetchAlRecipes(){
         const tr = document.createElement("tr");
         tr.innerHTML = `
             <td><input value="${recipe.name}"  id="name-${recipe._id}"></td>
-            <td><input value="${recipe.ingredients}"  id="ingedients-${recipe._id}"></td>
+            <td><input value="${recipe.ingredients}"  id="ingredients-${recipe._id}"></td>
             <td><input value="${recipe.landOfOrigin}" id="origin-${recipe._id}"></td>
             <td><input type="number" value="${recipe.time}" id="time-${recipe._id}"></td>
             <td><input type="number" value="${recipe.spiceLevel}" id="spice-${recipe._id}"></td>
             <td><input type="checkbox" id="gluten-${recipe._id}" ${recipe.glutenFree ? "checked" : ""} /></td>
             <td><input type="checkbox" id="vegan-${recipe._id}" ${recipe.vegan ? "checked" : ""} /></td>
-            <td><button onclick="updateRecipe('${recipe._id}')">Save</button>
+            <td><button onclick="update('${recipe._id}')">Save</button>
             <button onclick="deleteRecipe('${recipe._id}')">Delete</button></td>
 
             `;
@@ -56,6 +56,8 @@ async function fetchAlRecipes(){
 }
 
 async function update(recipeId){
+
+    console.log("Update func called. recipe id-", recipeId); //debug
     //updated recupe object
     const updatedRecipe = {
         name: document.getElementById(`name-${recipeId}`).value,
@@ -66,6 +68,9 @@ async function update(recipeId){
         glutenFree: document.getElementById(`gluten-${recipeId}`).checked,
         vegan: document.getElementById(`vegan-${recipeId}`).checked
     };
+    console.log("updated recipe", updatedRecipe); //debug
+    console.log("PUT request url- ", `/api/dishes/${recipeId}`) //debug
+
     // const name = document.getElementById(`name-${recipeId}`).value;
     // const ingredients = document.getElementById(`ingredients-${recipeId}`).value.split(",").map(ingredient => ingredient.trim());
     // const landOfOrigin = document.getElementById(`origin-${recipeId}`).value;
