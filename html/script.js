@@ -70,15 +70,6 @@ async function update(recipeId){
     };
     console.log("updated recipe", updatedRecipe); //debug
     console.log("PUT request url- ", `/api/dishes/${recipeId}`) //debug
-
-    // const name = document.getElementById(`name-${recipeId}`).value;
-    // const ingredients = document.getElementById(`ingredients-${recipeId}`).value.split(",").map(ingredient => ingredient.trim());
-    // const landOfOrigin = document.getElementById(`origin-${recipeId}`).value;
-    // const time = Number(document.getElementById(`time-${recipeId}`).value);
-    // const spiceLevel = Number(document.getElementById(`spice-${recipeId}`).value);
-    // const glutenFree = document.getElementById(`gluten-${recipeId}`).checked;
-    // const vegan = document.getElementById(`vegan-${recipeId}`).checked;
-    //old code keep for now
     
     console.log(updatedRecipe); //debug
 
@@ -95,7 +86,10 @@ async function update(recipeId){
     fetchAlRecipes();
 };
 
-async function deleteRecipe(recipeId){
+async function deleteRecipe(recipeId, recipeName){
+    const confirmDeletion = window.confirm(`Are you sure u want to delete this dish?`);
+    if (!confirmDeletion) return;
+
     await fetch(`/api/dishes/${recipeId}`, {
         method: 'DELETE'
     });
